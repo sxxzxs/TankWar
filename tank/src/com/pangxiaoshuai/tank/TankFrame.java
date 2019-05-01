@@ -30,23 +30,63 @@ public class TankFrame extends Frame {
 	@Override
 	public void paint(Graphics g) {		//Graphics相当于画笔
 		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
-		x += 10;
+		//x += 10;
 		//y += 10;			
 	}
 	
 	class MyKeyListener extends KeyAdapter{	//处理对于键盘的监听
-
+		
+		boolean bL = false;
+		boolean bU = false;
+		boolean bR = false;
+		boolean bD = false;
+		
 		@Override
 		public void keyPressed(KeyEvent e) {	//一个键被按下去时候调用
 			//x += 200;
 			//repaint();	//会默认调用paint(),让窗口重新绘制;
+			int key = e.getKeyCode(); 	//	得到按下键的代码
+			switch (key) {
+			case KeyEvent.VK_LEFT:		//按下的是向左的键吗
+				bL = true;
+				break;
+			case KeyEvent.VK_UP:		
+				bU = true;
+				break;
+			case KeyEvent.VK_RIGHT:		
+				bR = true;
+				break;
+			case KeyEvent.VK_DOWN:		
+				bD = true;
+				break;
+
+			default:
+				break;
+			}
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {	//一个键被抬起啦时候调用
+			int key = e.getKeyCode(); 	//	得到按下键的代码
+			switch (key) {
+			case KeyEvent.VK_LEFT:		//按下的是向左的键吗
+				bL = false;
+				break;
+			case KeyEvent.VK_UP:		
+				bU = false;
+				break;
+			case KeyEvent.VK_RIGHT:		
+				bR = false;
+				break;
+			case KeyEvent.VK_DOWN:		
+				bD = false;
+				break;
+
+			default:
+				break;
+			}
 			
-		}			
-		
+		}					
 	}
 
 }
