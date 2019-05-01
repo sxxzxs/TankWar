@@ -1,39 +1,26 @@
 package com.pangxiaoshuai.tank;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
-public class Tank {
-	private int x, y;
-	private Dir dir = Dir.DOWN;
-	private static final int SPEED = 5;
+public class Bullet {
+	private static final int SPEED = 10;
+	public static int WIDTH = 15,HEIGHT = 15;
 	
-	private boolean moving = false;
+	private int x,y;
+	private Dir dir;
 	
-	public boolean isMoving() {
-		return moving;
-	}
-
-	public void setMoving(boolean moving) {
-		this.moving = moving;
-	}
-
-	public Dir getDir() {
-		return dir;
-	}
-
-	public void setDir(Dir dir) {
-		this.dir = dir;
-	}
-		
-	public Tank(int x, int y, Dir dir) {
-		super();
+	public Bullet(int x,int y,Dir dir) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
 	}
-
+	
 	public void paint(Graphics g) {
-		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
+		Color c = g.getColor();
+		g.setColor(Color.RED);  //设置炮弹颜色
+		g.fillOval(x, y, WIDTH, HEIGHT);
+		g.setColor(c);  //把原来画笔颜色设回来
 		//x += 10;
 		//y += 10;
 		move();
@@ -41,7 +28,7 @@ public class Tank {
 	}
 
 	private void move() {
-		if(!moving) return;
+		
 		switch (dir) {	//根据坦克的方向进行坦克的移动
 		case LEFT:
 			x -= SPEED;
@@ -76,6 +63,5 @@ public class Tank {
 			break;
 		}				
 	}
-	
 
 }

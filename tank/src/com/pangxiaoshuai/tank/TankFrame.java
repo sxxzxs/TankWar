@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 public class TankFrame extends Frame {
 	
 	Tank myTank = new Tank(200,200,Dir.DOWN);
+	Bullet b = new Bullet(300,300,Dir.DOWN);
 	
 	public TankFrame() {
 		setSize(800, 600);	//初始化窗口大小
@@ -31,7 +32,8 @@ public class TankFrame extends Frame {
 	//窗口需要重新绘制时候调用
 	@Override
 	public void paint(Graphics g) {		//Graphics相当于画笔
-		myTank.paint(g);	//把这只画笔传给主站坦克，让它自己把自己画出来				
+		myTank.paint(g);	//把这只画笔传给主站坦克，让它自己把自己画出来	
+		b.paint(g);
 	}
 	
 	class MyKeyListener extends KeyAdapter{	//处理对于键盘的监听
@@ -40,6 +42,10 @@ public class TankFrame extends Frame {
 		boolean bU = false;
 		boolean bR = false;
 		boolean bD = false;
+		boolean LEFT_UP = false;
+		boolean LEFT_DOWN = false;
+		boolean RIGHT_UP = false;
+		boolean RIGHT_DOWN = false;
 		
 		@Override
 		public void keyPressed(KeyEvent e) {	//一个键被按下去时候调用
@@ -58,11 +64,12 @@ public class TankFrame extends Frame {
 				break;
 			case KeyEvent.VK_DOWN:		
 				bD = true;
-				break;
+				break;			
 
 			default:
 				break;
 			}
+			
 			setMainTankDir();	//根据按键的状态改变坦克的方向
 		}
 
@@ -86,6 +93,7 @@ public class TankFrame extends Frame {
 			default:
 				break;
 			}
+						
 			setMainTankDir();
 			
 		}
@@ -99,12 +107,12 @@ public class TankFrame extends Frame {
 			if(bU) myTank.setDir(Dir.UP);
 			if(bR) myTank.setDir(Dir.RIGHT);
 			if(bD) myTank.setDir(Dir.DOWN);
+			if(bL&&bU) myTank.setDir(Dir.LEFT_UP);
+			if(bL&&bD) myTank.setDir(Dir.LEFT_DOWN);
+			if(bR&&bU) myTank.setDir(Dir.RIGHT_UP);
+			if(bR&&bD) myTank.setDir(Dir.RIGHT_DOWN);
 			}
-			
-			
-				
-			
-			
+															
 		}					
 	}
 
