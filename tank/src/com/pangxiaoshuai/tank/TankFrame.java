@@ -8,11 +8,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TankFrame extends Frame {
 	
 	Tank myTank = new Tank(200,200,Dir.DOWN,this);
-	Bullet b = new Bullet(300,300,Dir.DOWN);
+	List<Bullet> bullets = new ArrayList<>();
+	Bullet b = new Bullet(300,300,Dir.DOWN,this);
 	static final int GAME_WIDTH = 800,GAME_HEIGHT = 600;
 	
 	
@@ -53,8 +56,15 @@ public class TankFrame extends Frame {
 	//窗口需要重新绘制时候调用
 	@Override
 	public void paint(Graphics g) {		//Graphics相当于画笔
+		Color c = g.getColor();	//和设置坦克、子弹意思一样
+		g.setColor(Color.WHITE);
+		g.drawString("子弹的数量: "+ bullets.size(), 10,60);
+		g.setColor(c);
+		
 		myTank.paint(g);	//把这只画笔传给主站坦克，让它自己把自己画出来	
-		b.paint(g);
+		for(int i = 0; i < bullets.size(); i++) {
+			bullets.get(i).paint(g);
+		}
 	}
 	
 	class MyKeyListener extends KeyAdapter{	//处理对于键盘的监听

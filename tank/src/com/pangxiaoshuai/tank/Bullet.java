@@ -10,19 +10,26 @@ public class Bullet {
 	private int x,y;
 	private Dir dir;
 	
-	public Bullet(int x,int y,Dir dir) {
+	private boolean live = true;
+	TankFrame tf = null;
+	
+	public Bullet(int x,int y,Dir dir,TankFrame tf) {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.tf = tf;
 	}
 	
 	public void paint(Graphics g) {
+		if(!live) {
+			tf.bullets.remove(this);
+		}
+		
 		Color c = g.getColor();
 		g.setColor(Color.RED);  //设置炮弹颜色
 		g.fillOval(x, y, WIDTH, HEIGHT);
 		g.setColor(c);  //把原来画笔颜色设回来
-		//x += 10;
-		//y += 10;
+		
 		move();
 						
 	}
@@ -61,7 +68,13 @@ public class Bullet {
 
 		default:
 			break;
-		}				
+		}
+		
+		if(x < 0 || y < 0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT) {
+			live = false;
+		}
+		
+			
 	}
 
 }
