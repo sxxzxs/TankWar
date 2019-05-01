@@ -1,5 +1,6 @@
 package com.pangxiaoshuai.tank;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Tank {
@@ -33,9 +34,11 @@ public class Tank {
 	}
 
 	public void paint(Graphics g) {
+		Color c = g.getColor();	
+		g.setColor(Color.YELLOW); 	//设置主战坦克颜色
 		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
-		//x += 10;
-		//y += 10;
+		g.setColor(c); 	//把原来画笔颜色设回来
+		
 		move();
 						
 	}

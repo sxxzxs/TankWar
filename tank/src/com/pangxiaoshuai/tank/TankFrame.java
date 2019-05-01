@@ -1,7 +1,9 @@
 package com.pangxiaoshuai.tank;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -11,9 +13,11 @@ public class TankFrame extends Frame {
 	
 	Tank myTank = new Tank(200,200,Dir.DOWN);
 	Bullet b = new Bullet(300,300,Dir.DOWN);
+	static final int GAME_WIDTH = 800,GAME_HEIGHT = 600;
+	
 	
 	public TankFrame() {
-		setSize(800, 600);	//初始化窗口大小
+		setSize(GAME_WIDTH, GAME_HEIGHT);	//初始化窗口大小
 		setResizable(false);  //显示出来的窗口大小不能改变
 		setTitle("tank war");  //给窗口起名字
 		setVisible(true); //让窗口设为可见
@@ -27,6 +31,23 @@ public class TankFrame extends Frame {
 				System.exit(0);
 			}			
 		});
+	}
+	
+	/*解决双缓冲,没必要深究，截获update,首先把画出来的东西（坦克，子弹）先画在内存的图片中，
+	图片大小和游戏画面一致，然后把内存中图片一次性画到屏幕上（把内存的内容复制到显存）*/
+	Image offScreenImage = null;
+	@Override
+	public void update(Graphics g) {
+		if(offScreenImage == null) {
+			offScreenImage = this.createImage(GAME_WIDTH, GAME_HEIGHT);
+		}
+		Graphics gOffScreen = offScreenImage.getGraphics();
+		Color c = gOffScreen.getColor();
+		gOffScreen.setColor(Color.BLACK);
+		gOffScreen.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+		gOffScreen.setColor(c);
+		paint(gOffScreen);
+		g.drawImage(offScreenImage, 0, 0, null);
 	}
 	
 	//窗口需要重新绘制时候调用
