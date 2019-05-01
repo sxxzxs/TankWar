@@ -8,9 +8,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class TankFrame extends Frame {
-	int x = 200, y = 200;	//定义坐标
-	Dir dir = Dir.DOWN;
-	private static final int SPEED = 10;
+	
+	Tank myTank = new Tank(200,200,Dir.DOWN);
 	
 	public TankFrame() {
 		setSize(800, 600);	//初始化窗口大小
@@ -32,26 +31,7 @@ public class TankFrame extends Frame {
 	//窗口需要重新绘制时候调用
 	@Override
 	public void paint(Graphics g) {		//Graphics相当于画笔
-		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
-		//x += 10;
-		//y += 10;
-		switch (dir) {	//根据坦克的方向进行坦克的移动
-		case LEFT:
-			x -= SPEED;
-			break;
-		case UP:
-			y -= SPEED;
-			break;
-		case RIGHT:
-			x += SPEED;
-			break;
-		case DOWN:
-			y += SPEED;
-			break;
-
-		default:
-			break;
-		}
+		myTank.paint(g);	//把这只画笔传给主站坦克，让它自己把自己画出来				
 	}
 	
 	class MyKeyListener extends KeyAdapter{	//处理对于键盘的监听
@@ -111,10 +91,10 @@ public class TankFrame extends Frame {
 		}
 
 		private void setMainTankDir() {	
-			if(bL) dir = Dir.LEFT;	//	根据bL值获得按下或者抬起的方向
-			if(bU) dir = Dir.UP;
-			if(bR) dir = Dir.RIGHT;
-			if(bD) dir = Dir.DOWN;
+			if(bL) myTank.setDir(Dir.LEFT); 	//	根据bL值获得按下或者抬起的方向
+			if(bU) myTank.setDir(Dir.UP);
+			if(bR) myTank.setDir(Dir.RIGHT);
+			if(bD) myTank.setDir(Dir.DOWN);
 			
 		}					
 	}
