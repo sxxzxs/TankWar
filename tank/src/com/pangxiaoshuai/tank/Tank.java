@@ -5,7 +5,18 @@ import java.awt.Graphics;
 public class Tank {
 	private int x, y;
 	private Dir dir = Dir.DOWN;
+	private static final int SPEED = 10;
 	
+	private boolean moving = false;
+	
+	public boolean isMoving() {
+		return moving;
+	}
+
+	public void setMoving(boolean moving) {
+		this.moving = moving;
+	}
+
 	public Dir getDir() {
 		return dir;
 	}
@@ -13,9 +24,7 @@ public class Tank {
 	public void setDir(Dir dir) {
 		this.dir = dir;
 	}
-
-	private static final int SPEED = 10;
-	
+		
 	public Tank(int x, int y, Dir dir) {
 		super();
 		this.x = x;
@@ -27,6 +36,12 @@ public class Tank {
 		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
 		//x += 10;
 		//y += 10;
+		move();
+						
+	}
+
+	private void move() {
+		if(!moving) return;
 		switch (dir) {	//根据坦克的方向进行坦克的移动
 		case LEFT:
 			x -= SPEED;
@@ -44,6 +59,7 @@ public class Tank {
 		default:
 			break;
 		}
+		
 		
 	}
 	
