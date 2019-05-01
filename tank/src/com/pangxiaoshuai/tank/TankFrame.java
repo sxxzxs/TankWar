@@ -26,26 +26,26 @@ public class TankFrame extends Frame {
 		});
 	}
 	
-	//窗口需要重新绘制时候自动调用
+	//窗口需要重新绘制时候调用
 	@Override
 	public void paint(Graphics g) {		//Graphics相当于画笔
 		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
 		x += 10;
-		y += 10;			
+		//y += 10;			
 	}
 	
 	class MyKeyListener extends KeyAdapter{	//处理对于键盘的监听
 
 		@Override
 		public void keyPressed(KeyEvent e) {	//一个键被按下去时候调用
-			System.out.println("key pressed!");
+			//x += 200;
+			//repaint();	//会默认调用paint(),让窗口重新绘制;
 		}
 
 		@Override
 		public void keyReleased(KeyEvent e) {	//一个键被抬起啦时候调用
-			System.out.println("key released!");
-		}	
-		
+			
+		}			
 		
 	}
 
