@@ -65,6 +65,10 @@ public class TankFrame extends Frame {
 		for(int i = 0; i < bullets.size(); i++) {
 			bullets.get(i).paint(g);
 		}
+		
+		/*for(Bullet b : bullets) {	//这个会报错
+			b.paint(g);
+		}*/
 	}
 	
 	class MyKeyListener extends KeyAdapter{	//处理对于键盘的监听
@@ -73,10 +77,10 @@ public class TankFrame extends Frame {
 		boolean bU = false;
 		boolean bR = false;
 		boolean bD = false;
-		boolean LEFT_UP = false;
+	/*	boolean LEFT_UP = false;
 		boolean LEFT_DOWN = false;
 		boolean RIGHT_UP = false;
-		boolean RIGHT_DOWN = false;
+		boolean RIGHT_DOWN = false;*/
 		
 		@Override
 		public void keyPressed(KeyEvent e) {	//一个键被按下去时候调用
@@ -141,10 +145,10 @@ public class TankFrame extends Frame {
 			if(bU) myTank.setDir(Dir.UP);
 			if(bR) myTank.setDir(Dir.RIGHT);
 			if(bD) myTank.setDir(Dir.DOWN);
-			if(bL&&bU) myTank.setDir(Dir.LEFT_UP);
+			/*if(bL&&bU) myTank.setDir(Dir.LEFT_UP);
 			if(bL&&bD) myTank.setDir(Dir.LEFT_DOWN);
 			if(bR&&bU) myTank.setDir(Dir.RIGHT_UP);
-			if(bR&&bD) myTank.setDir(Dir.RIGHT_DOWN);
+			if(bR&&bD) myTank.setDir(Dir.RIGHT_DOWN);*/
 			}
 															
 		}					

@@ -60,7 +60,7 @@ public class Tank {
 		case DOWN:
 			y += SPEED;
 			break;
-		 case LEFT_UP:
+		/* case LEFT_UP:
              y -= SPEED;
              x -= SPEED;
              break;
@@ -75,7 +75,7 @@ public class Tank {
          case RIGHT_DOWN:
              x += SPEED;
              y += SPEED;
-             break;
+             break;*/
 
 		default:
 			break;
