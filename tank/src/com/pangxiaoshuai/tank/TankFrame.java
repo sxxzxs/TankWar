@@ -71,6 +71,11 @@ public class TankFrame extends Frame {
 			tanks.get(i).paint(g);
 		}
 		
+		for(int i=0; i<bullets.size(); i++) {
+			for(int j = 0; j<tanks.size(); j++) 
+				bullets.get(i).collideWith(tanks.get(j));
+		}
+		
 		/*for(Bullet b : bullets) {	//这个会报错
 			b.paint(g);
 		}*/

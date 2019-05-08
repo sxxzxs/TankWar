@@ -13,6 +13,7 @@ public class Tank {
 
 	
 	private boolean moving = false;
+	private boolean living = true;
 	
 	public boolean isMoving() {
 		return moving;
@@ -22,6 +23,14 @@ public class Tank {
 		this.moving = moving;
 	}
 
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
+	
 	public Dir getDir() {
 		return dir;
 	}
@@ -30,6 +39,18 @@ public class Tank {
 		this.dir = dir;
 	}
 		
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public void die() {
+		this.living = false;
+	}
+
 	public Tank(int x, int y, Dir dir,TankFrame tf) {
 		super();
 		this.x = x;
@@ -44,6 +65,8 @@ public class Tank {
 		g.fillRect(x, y, 50, 50);	//填充一个矩形fillRect(x轴,y轴，宽，高)
 		g.setColor(c); 	//把原来画笔颜色设回来
 		*/	
+		if(!living) tf.tanks.remove(this);
+		
 		switch(dir) {
 		case LEFT:
 			g.drawImage(ResourceMgr.tankL, x, y, null);
