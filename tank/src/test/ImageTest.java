@@ -17,7 +17,7 @@ public class ImageTest {
 	try {
 		//引入图片
 		BufferedImage image = ImageIO.read(new File("C:/Users/Administrator/Desktop/IMG_3197.JPG"));
-		assertNotNull(image);	//不是空值测试通过
+		assertNotNull(image);
 	} catch (IOException e) {
 		
 		e.printStackTrace();

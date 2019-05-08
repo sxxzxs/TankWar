@@ -1,11 +1,13 @@
 package com.pangxiaoshuai.tank;
 
-import java.awt.Color;
+
 import java.awt.Graphics;
 
 public class Bullet {
 	private static final int SPEED = 10;
-	public static int WIDTH = 15,HEIGHT = 15;
+	//public static int WIDTH = 15,HEIGHT = 15;
+	public static int WIDTH = ResourceMgr.bulletD.getWidth();
+	public static int HEIGHT = ResourceMgr.bulletD.getHeight();
 	
 	private int x,y;
 	private Dir dir;
@@ -25,11 +27,26 @@ public class Bullet {
 			tf.bullets.remove(this);
 		}
 		
-		Color c = g.getColor();
+		/*Color c = g.getColor();
 		g.setColor(Color.RED);  //设置炮弹颜色
 		g.fillOval(x, y, WIDTH, HEIGHT);
 		g.setColor(c);  //把原来画笔颜色设回来
+		*/	
 		
+		switch(dir) {
+		case LEFT:
+			g.drawImage(ResourceMgr.bulletL, x, y, null);
+			break;
+		case UP:
+			g.drawImage(ResourceMgr.bulletU, x, y, null);
+			break;
+		case RIGHT:
+			g.drawImage(ResourceMgr.bulletR, x, y, null);
+			break;
+		case DOWN:
+			g.drawImage(ResourceMgr.bulletD, x, y, null);
+			break;
+		}
 		move();
 						
 	}
