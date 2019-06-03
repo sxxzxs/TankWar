@@ -12,7 +12,7 @@ public class Main {
 		}
 		
 		while(true) {
-			Thread.sleep(50);	//歇50ms
+			Thread.sleep(25);	//歇25ms
 			tf.repaint();
 		}
 	}

@@ -18,7 +18,7 @@ public class TankFrame extends Frame {
 	List<Tank> tanks = new ArrayList<>();
 	Explode e = new Explode(100, 100, this);
 	
-	static final int GAME_WIDTH = 800,GAME_HEIGHT = 600;
+	static final int GAME_WIDTH = 1080,GAME_HEIGHT = 960;
 	
 	
 	public TankFrame() {
@@ -74,7 +74,7 @@ public class TankFrame extends Frame {
 		
 		for(int i=0; i<bullets.size(); i++) {
 			for(int j = 0; j<tanks.size(); j++) 
-				bullets.get(i).collideWith(tanks.get(j));
+				bullets.get(i).collideWith(tanks.get(j));		
 		}
 		
 		e.paint(g);
@@ -121,6 +121,8 @@ public class TankFrame extends Frame {
 			}
 			
 			setMainTankDir();	//根据按键的状态改变坦克的方向
+			
+			new Thread(()->new Audio("audio/tank_move.wav").play()).start();
 		}
 
 		@Override
