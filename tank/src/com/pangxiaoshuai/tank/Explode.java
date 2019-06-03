@@ -30,6 +30,6 @@ public class Explode {
 			step = 0;
 	}
 
-
+//测试
 
 }
